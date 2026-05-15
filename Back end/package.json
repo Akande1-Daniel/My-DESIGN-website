@@ -1,0 +1,19 @@
+{
+  "name": "dedan-design-backend",
+  "version": "1.0.0",
+  "description": "Express backend for Dedan Design contact form",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "dotenv": "^16.0.3",
+    "nodemailer": "^6.9.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

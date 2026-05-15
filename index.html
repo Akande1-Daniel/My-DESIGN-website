@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dedan Design</title>
+  <link rel="icon" href="images/favicon-32x32.png" />
+  
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#f5f5f5;
+      color:#222;
+      overflow-x:hidden;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    /* HEADER */
+
+    header{
+      width:100%;
+      background:white;
+      padding:15px 6%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .logo img{
+      width:60px;
+    }
+
+    .logo h1{
+      font-size:28px;
+      color:#222;
+      white-space:nowrap;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    .navbar a{
+      text-decoration:none;
+      color:#333;
+      font-weight:600;
+      transition:0.3s;
+      position:relative;
+    }
+
+    .navbar a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0%;
+      height:3px;
+      background:#ff6600;
+      border-radius:10px;
+      transition:0.3s;
+    }
+
+    .navbar a:hover{
+      color:#ff6600;
+    }
+
+    .navbar a:hover::after{
+      width:100%;
+    }
+
+    /* MOBILE MENU */
+
+    .menu-btn{
+      display:none;
+      font-size:28px;
+      cursor:pointer;
+      color:#222;
+    }
+
+    #menu-toggle{
+      display:none;
+    }
+
+    /* HERO SECTION */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:60px;
+      padding:80px 6%;
+      background:linear-gradient(to right,#ffffff,#eef3ff);
+      flex-wrap:wrap;
+    }
+
+    .hero-text{
+      flex:1 1 450px;
+    }
+
+    .hero-text h2{
+      font-size:clamp(2.5rem,6vw,5rem);
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero-text span{
+      color:#ff6600;
+    }
+
+    .hero-text p{
+      font-size:18px;
+      line-height:1.8;
+      color:#555;
+      margin-bottom:30px;
+      max-width:600px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:15px 38px;
+      background:#ff6600;
+      color:white;
+      text-decoration:none;
+      border-radius:50px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#222;
+      transform:translateY(-4px);
+    }
+
+    .hero-image{
+      flex:1 1 350px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .hero-image img{
+      width:100%;
+      max-width:430px;
+      animation:float 4s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-15px);
+      }
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    /* SECTION TITLE */
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h3{
+      font-size:clamp(2rem,5vw,3rem);
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#666;
+      font-size:17px;
+    }
+
+    /* SERVICES */
+
+    .services{
+      padding:100px 6%;
+      background:white;
+    }
+
+    .service-box{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:#f8f8f8;
+      padding:45px 30px;
+      border-radius:22px;
+      transition:0.3s;
+      text-align:center;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 12px 25px rgba(0,0,0,0.1);
+      background:white;
+    }
+
+    .card i{
+      font-size:45px;
+      color:#ff6600;
+      margin-bottom:20px;
+    }
+
+    .card h4{
+      font-size:24px;
+      margin-bottom:15px;
+    }
+
+    .card p{
+      line-height:1.7;
+      color:#555;
+    }
+
+    /* PORTFOLIO */
+
+    .portfolio{
+      padding:100px 6%;
+      background:#f5f5f5;
+    }
+
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .portfolio-item{
+      overflow:hidden;
+      border-radius:20px;
+      position:relative;
+      height:280px;
+      cursor:pointer;
+    }
+
+    .portfolio-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:0.4s;
+    }
+
+    .portfolio-item:hover img{
+      transform:scale(1.1);
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.55);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+      font-size:22px;
+      font-weight:bold;
+      opacity:0;
+      transition:0.4s;
+    }
+
+    .portfolio-item:hover .overlay{
+      opacity:1;
+    }
+
+    /* CONTACT */
+
+    .contact{
+      padding:100px 6%;
+      background:white;
+      text-align:center;
+    }
+
+    .contact h3{
+      font-size:clamp(2rem,5vw,3rem);
+      margin-bottom:20px;
+    }
+
+    .contact p{
+      color:#666;
+      font-size:18px;
+      line-height:1.8;
+      margin-bottom:30px;
+      max-width:700px;
+      margin-inline:auto;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#111;
+      color:white;
+      text-align:center;
+      padding:25px 15px;
+    }
+
+    footer p{
+      font-size:15px;
+      color:#ddd;
+    }
+
+    /* TABLET */
+
+    @media(max-width:900px){
+
+      .hero{
+        text-align:center;
+      }
+
+      .hero-text p{
+        margin:auto auto 30px;
+      }
+    }
+
+    /* MOBILE NAV */
+
+    @media(max-width:768px){
+
+      .menu-btn{
+        display:block;
+      }
+
+      .navbar{
+        position:absolute;
+        top:90px;
+        left:-100%;
+        width:100%;
+        background:white;
+        flex-direction:column;
+        padding:30px 0;
+        transition:0.4s;
+        box-shadow:0 10px 20px rgba(0,0,0,0.08);
+      }
+
+      .navbar a{
+        margin:15px 0;
+        font-size:18px;
+      }
+
+      #menu-toggle:checked ~ .navbar{
+        left:0;
+      }
+
+      .hero{
+        padding:60px 5%;
+      }
+
+      .services,
+      .portfolio,
+      .contact{
+        padding:80px 5%;
+      }
+    }
+
+    /* SMALL DEVICES */
+
+    @media(max-width:500px){
+
+      .logo h1{
+        font-size:22px;
+      }
+
+      .hero-text p{
+        font-size:16px;
+      }
+
+      .btn{
+        width:100%;
+        max-width:260px;
+        text-align:center;
+      }
+
+      .portfolio-item{
+        height:220px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">
+      <img src="images/favicon-32x32.png" alt="Dedan Design Logo">
+      <h1>DEDAN DESIGN</h1>
+    </div>
+
+    <!-- MOBILE MENU -->
+
+    <input type="checkbox" id="menu-toggle">
+
+    <label for="menu-toggle" class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </label>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-text">
+
+      <h2>
+        Creative <span>Graphic Design</span> Solutions
+      </h2>
+
+      <p>
+        Dedan Design creates modern, professional and eye-catching
+        visuals for businesses, brands and individuals. We turn
+        creative ideas into powerful visual experiences.
+      </p>
+
+      <a href="#contact" class="btn">Hire Me</a>
+
+    </div>
+
+    <div class="hero-image">
+      <img src="images/favicon-32x32.png" alt="Dedan Design">
+    </div>
+
+  </section>
+
+  <!-- SERVICES -->
+
+  <section class="services" id="services">
+
+    <div class="section-title">
+      <h3>My Services</h3>
+      <p>Professional design solutions for your brand</p>
+    </div>
+
+    <div class="service-box">
+
+      <div class="card">
+        <i class="fas fa-pen-nib"></i>
+        <h4>Logo Design</h4>
+        <p>
+          Unique and modern logos that represent your business
+          identity professionally.
+        </p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-image"></i>
+        <h4>Poster Design</h4>
+        <p>
+          Creative posters and flyers designed to attract attention
+          and promote your brand.
+        </p>
+      </div>
+
+      <div class="card">
+        <i class="fas fa-mobile-screen"></i>
+        <h4>Social Media Design</h4>
+        <p>
+          Engaging social media graphics that boost audience
+          interaction and visibility.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PORTFOLIO -->
+
+  <section class="portfolio" id="portfolio">
+
+    <div class="section-title">
+      <h3>Portfolio</h3>
+      <p>Some creative works from Dedan Design</p>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <div class="portfolio-item">
+        <img src="images/D.png" alt="">
+        <div class="overlay">Brand Design</div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="images/Screenshot_20260505_171834.jpg" alt="">
+        <div class="overlay">Creative Poster</div>
+      </div>
+
+      <div class="portfolio-item">
+        <img src="images/IMG-20260504-WA0030.jpg" alt="">
+        <div class="overlay">Social Media Design</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contact">
+
+    <h3>Let’s Work Together</h3>
+
+    <p>
+      Need a professional graphic designer for your next project?
+      Dedan Design is ready to create visuals that make your brand stand out.
+    </p>
+
+    <a href="mailto:dedandesign@gmail.com" class="btn">
+      Contact Me
+    </a>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>© 2026 Dedan Design. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
