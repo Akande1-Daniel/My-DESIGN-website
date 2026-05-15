@@ -650,7 +650,7 @@
       };
 
       try {
-        const backendOrigin = window.location.protocol === 'file:' || window.location.port !== '3000'
+        const backendOrigin = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
           ? 'http://localhost:3000'
           : '';
         const response = await fetch(`${backendOrigin}/api/contact`, {
