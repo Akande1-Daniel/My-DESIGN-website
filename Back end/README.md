@@ -36,6 +36,25 @@ If SMTP settings are not provided, contact messages will still be logged to `Bac
 
 When SMTP is not configured, the server now automatically creates an Ethereal test account and sends messages there. The API response will include a `previewUrl` field when Ethereal is used, and the server logs also print the preview URL. Open that URL in your browser to view the test message.
 
+### Netlify production setup
+
+For the deployed Netlify function, you must set the SMTP values in Netlify site settings instead of relying on your local `.env` file.
+
+Go to `app.netlify.com`, open your site, then `Site settings` → `Build & deploy` → `Environment` → `Environment variables`.
+
+Add these exact variables:
+
+```text
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=<your-app-password>
+EMAIL_TO=your-email@gmail.com
+```
+
+Then save and redeploy your site.
+
 ## API
 
 - `POST /api/contact`

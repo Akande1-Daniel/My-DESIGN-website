@@ -38,9 +38,19 @@ exports.handler = async (event) => {
   let etherealFrom = null;
   let usingEthereal = false;
 
+  const isLocalMode = process.env.NETLIFY_DEV === 'true' || process.env.NODE_ENV === 'development' || !process.env.NETLIFY;
   let transporter;
   try {
     if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS) {
+      if (!EMAIL_TO) {
+        return {
+          statusCode: 500,
+          body: JSON.stringify({
+            success: false,
+            message: 'Production SMTP is configured but EMAIL_TO is missing. Set EMAIL_TO in Netlify environment variables.',
+          }),
+        };
+      }
       transporter = nodemailer.createTransport({
         host: SMTP_HOST,
         port: SMTP_PORT,
@@ -51,7 +61,7 @@ exports.handler = async (event) => {
         },
       });
       await transporter.verify();
-    } else {
+    } else if (isLocalMode) {
       const testAccount = await nodemailer.createTestAccount();
       usingEthereal = true;
       transporter = nodemailer.createTransport({
@@ -65,6 +75,20 @@ exports.handler = async (event) => {
       });
       etherealFrom = testAccount.user;
       EMAIL_TO = EMAIL_TO || testAccount.user;
+    } else {
+      const missingVars = [];
+      if (!SMTP_HOST) missingVars.push('SMTP_HOST');
+      if (!SMTP_PORT) missingVars.push('SMTP_PORT');
+      if (!SMTP_USER) missingVars.push('SMTP_USER');
+      if (!SMTP_PASS) missingVars.push('SMTP_PASS');
+      if (!EMAIL_TO) missingVars.push('EMAIL_TO');
+      return {
+        statusCode: 500,
+        body: JSON.stringify({
+          success: false,
+          message: `SMTP is not configured in production. Missing: ${missingVars.join(', ')}. Set them in Netlify environment variables.`,
+        }),
+      };
     }
   } catch (error) {
     console.error('Failed to configure transporter:', error);
