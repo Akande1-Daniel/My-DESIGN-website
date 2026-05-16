@@ -38,7 +38,7 @@ exports.handler = async (event) => {
   let etherealFrom = null;
   let usingEthereal = false;
 
-  const isLocalMode = process.env.NETLIFY_DEV === 'true' || process.env.NODE_ENV === 'development' || !process.env.NETLIFY;
+  const isLocalMode = process.env.NETLIFY_DEV === 'true' || process.env.NODE_ENV === 'development';
   let transporter;
   try {
     if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS) {
