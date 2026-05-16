@@ -29,12 +29,12 @@ exports.handler = async (event) => {
     };
   }
 
-  const SMTP_HOST = process.env.SMTP_HOST || '';
+  const SMTP_HOST = process.env.SMTP_HOST || process.env.SMTO_HOST || process.env.SMPT_HOST || '';
   const SMTP_PORT = process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : undefined;
   const SMTP_SECURE = process.env.SMTP_SECURE === 'true';
-  const SMTP_USER = process.env.SMTP_USER || '';
-  const SMTP_PASS = process.env.SMTP_PASS || '';
-  let EMAIL_TO = process.env.EMAIL_TO || process.env.SMTP_USER || '';
+  const SMTP_USER = process.env.SMTP_USER || process.env.SMTPUSER || '';
+  const SMTP_PASS = process.env.SMTP_PASS || process.env.SMTPPASS || '';
+  let EMAIL_TO = process.env.EMAIL_TO || process.env.EMAIL_T0 || process.env.EMAILTO || process.env.SMTP_USER || '';
   let etherealFrom = null;
   let usingEthereal = false;
 
