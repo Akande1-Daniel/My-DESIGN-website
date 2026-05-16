@@ -94,7 +94,11 @@ exports.handler = async (event) => {
     console.error('Failed to configure transporter:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ success: false, message: 'Failed to configure email sender.' }),
+      body: JSON.stringify({
+        success: false,
+        message: 'Failed to configure email sender.',
+        error: error.message,
+      }),
     };
   }
 
@@ -120,7 +124,11 @@ exports.handler = async (event) => {
     console.error('Failed to send email:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ success: false, message: 'Message received but failed to send email.' }),
+      body: JSON.stringify({
+        success: false,
+        message: 'Message received but failed to send email.',
+        error: error.message,
+      }),
     };
   }
 };
