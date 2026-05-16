@@ -3,12 +3,21 @@
   functions = "netlify/functions"
 
 [build.environment]
-  # Replace these placeholder values with your real SMTP credentials.
+  # Replace these placeholder values with your actual SMTP credentials.
+  SMTP_HOST = "smtp.gmail.com"
+  SMTP_PORT = "587"
+  SMTP_SECURE = "false"
+  SMTP_USER = "akandedaniel@gmail.com"
+  SMTP_PASS = "DEEPERLIFEHIGHSC"
+  EMAIL_TO = "your-email@gmail.com"
+
+[context.production.environment]
+  # Production environment variables. Netlify uses these values during deploy.
   SMTP_HOST = "smtp.gmail.com"
   SMTP_PORT = "587"
   SMTP_SECURE = "false"
   SMTP_USER = "your-email@gmail.com"
-  SMTP_PASS = "your-smtp-password"
+  SMTP_PASS = "YOUR_APP_PASSWORD"
   EMAIL_TO = "your-email@gmail.com"
 
 [[redirects]]
